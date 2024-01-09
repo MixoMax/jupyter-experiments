@@ -1,0 +1,6 @@
+tensorflow
+tensorflow-text
+tensorflow-hub
+pandas
+numpy
+matplotlib
