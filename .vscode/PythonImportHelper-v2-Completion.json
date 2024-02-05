@@ -1,0 +1,185 @@
+[
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "winsound",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "winsound",
+        "description": "winsound",
+        "detail": "winsound",
+        "documentation": {}
+    },
+    {
+        "label": "gradio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "gradio",
+        "description": "gradio",
+        "detail": "gradio",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "autocast",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "StableDiffusionPipeline",
+        "importPath": "diffusers",
+        "description": "diffusers",
+        "isExtraImport": true,
+        "detail": "diffusers",
+        "documentation": {}
+    },
+    {
+        "label": "load_dataset",
+        "importPath": "datasets",
+        "description": "datasets",
+        "isExtraImport": true,
+        "detail": "datasets",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "cythonize",
+        "importPath": "Cython.Build",
+        "description": "Cython.Build",
+        "isExtraImport": true,
+        "detail": "Cython.Build",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "kind": 6,
+        "importPath": "12_ton_technik",
+        "description": "12_ton_technik",
+        "peekOfCode": "class Note:\n    pitch: str # pitch name (C, C#, D, D#, E, F, F#, G, G#, A, A#, H)\n    octave: int # octave number (0-8)\n    duration: int # duration in 16th notes (1-16)\n    def __init__(self, pitch: str, octave: int = 4, duration: int = 4):\n        self.pitch = pitch\n        self.octave = octave\n        self.duration = duration\n    def __str__(self):\n        return f\"{self.pitch}{self.octave}:{self.duration}\"",
+        "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "note_lookup",
+        "kind": 5,
+        "importPath": "12_ton_technik",
+        "description": "12_ton_technik",
+        "peekOfCode": "note_lookup = {\n    \"C\": 261.63,\n    \"C#\": 277.18,\n    \"D\": 293.66,\n    \"D#\": 311.13,\n    \"E\": 329.63,\n    \"F\": 349.23,\n    \"F#\": 369.99,\n    \"G\": 392.00,\n    \"G#\": 415.30,",
+        "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "notes",
+        "kind": 5,
+        "importPath": "12_ton_technik",
+        "description": "12_ton_technik",
+        "peekOfCode": "notes = []\nunused_notes = list(note_lookup.keys())\nfor i in range(12):\n    pitch = random.choice(unused_notes)\n    unused_notes.remove(pitch)\n    octave = random.choice([3, 4, 5])\n    duration = random.choice([1, 2, 4, 8])\n    notes.append(Note(pitch, octave, duration))\nfor note in notes:\n    print(note)",
+        "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "unused_notes",
+        "kind": 5,
+        "importPath": "12_ton_technik",
+        "description": "12_ton_technik",
+        "peekOfCode": "unused_notes = list(note_lookup.keys())\nfor i in range(12):\n    pitch = random.choice(unused_notes)\n    unused_notes.remove(pitch)\n    octave = random.choice([3, 4, 5])\n    duration = random.choice([1, 2, 4, 8])\n    notes.append(Note(pitch, octave, duration))\nfor note in notes:\n    print(note)\n    note.play()",
+        "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "generate_image",
+        "kind": 2,
+        "importPath": "gradio_sdxl_turbo",
+        "description": "gradio_sdxl_turbo",
+        "peekOfCode": "def generate_image(\n    prompt: str, \n    samples: int,\n    steps: int,\n    scale: float,\n    seed: int\n) -> Image.Image:\n    generator = pipe.generator(device=device).manual_seed(seed)\n    with autocast(\"cuda\"):\n        image_list = generator(prompt, samples=samples, steps=steps, scale=scale)",
+        "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    },
+    {
+        "label": "model_id",
+        "kind": 5,
+        "importPath": "gradio_sdxl_turbo",
+        "description": "gradio_sdxl_turbo",
+        "peekOfCode": "model_id = \"stabilityai/sdxl-turbo\"\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\npipe = StableDiffusionPipeline.from_pretrained(model_id).to(device)\ndef generate_image(\n    prompt: str, \n    samples: int,\n    steps: int,\n    scale: float,\n    seed: int\n) -> Image.Image:",
+        "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "gradio_sdxl_turbo",
+        "description": "gradio_sdxl_turbo",
+        "peekOfCode": "device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\npipe = StableDiffusionPipeline.from_pretrained(model_id).to(device)\ndef generate_image(\n    prompt: str, \n    samples: int,\n    steps: int,\n    scale: float,\n    seed: int\n) -> Image.Image:\n    generator = pipe.generator(device=device).manual_seed(seed)",
+        "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    },
+    {
+        "label": "pipe",
+        "kind": 5,
+        "importPath": "gradio_sdxl_turbo",
+        "description": "gradio_sdxl_turbo",
+        "peekOfCode": "pipe = StableDiffusionPipeline.from_pretrained(model_id).to(device)\ndef generate_image(\n    prompt: str, \n    samples: int,\n    steps: int,\n    scale: float,\n    seed: int\n) -> Image.Image:\n    generator = pipe.generator(device=device).manual_seed(seed)\n    with autocast(\"cuda\"):",
+        "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    },
+    {
+        "label": "iface",
+        "kind": 5,
+        "importPath": "gradio_sdxl_turbo",
+        "description": "gradio_sdxl_turbo",
+        "peekOfCode": "iface = gr.Interface(\n    fn = generate_image,\n    inputs = [\n        gr.Textbox(placeholder=\"Enter a prompt...\"),\n        gr.Slider(label=\"Samples\", minimum=1, maximum=10, value=1, step=1),\n        gr.Number(label=\"Steps\", value=4, step=1),\n        gr.Slider(label=\"Scale\", minimum=0, maximum=14, value=7, step=1),\n        gr.Number(label=\"Seed\", value=0, step=1)\n    ],\n    outputs = gr.Image(label=\"Generated Image\"),",
+        "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    }
+]
