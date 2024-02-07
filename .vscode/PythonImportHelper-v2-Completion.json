@@ -27,6 +27,23 @@
         "documentation": {}
     },
     {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
         "label": "gradio",
         "kind": 6,
         "isExtraImport": true,
@@ -135,6 +152,69 @@
         "description": "12_ton_technik",
         "peekOfCode": "unused_notes = list(note_lookup.keys())\nfor i in range(12):\n    pitch = random.choice(unused_notes)\n    unused_notes.remove(pitch)\n    octave = random.choice([3, 4, 5])\n    duration = random.choice([1, 2, 4, 8])\n    notes.append(Note(pitch, octave, duration))\nfor note in notes:\n    print(note)\n    note.play()",
         "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "float_to_char",
+        "kind": 2,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "def float_to_char(val: float) -> str:\n    if val > 1.0 or val < -1.0:\n        raise ValueError(\"Value must be between -1.0 and 1.0\")\n    # remap from [-1.0, 1.0] to [0, 255]\n    val = int((val + 1) * 127.5)\n    return chr(val)\ndef char_to_float(val: str) -> float:\n    # remap from [0, 255] to [-1.0, 1.0]\n    return (ord(val) / 127.5) - 1\ndef arr_to_str(arr: list[float]) -> str:",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "char_to_float",
+        "kind": 2,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "def char_to_float(val: str) -> float:\n    # remap from [0, 255] to [-1.0, 1.0]\n    return (ord(val) / 127.5) - 1\ndef arr_to_str(arr: list[float]) -> str:\n    out_str = \"\"\n    for val in arr:\n        out_str += float_to_char(val)\n    return out_str\ndef str_to_arr(in_str: str) -> list[float]:\n    out_arr = []",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "arr_to_str",
+        "kind": 2,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "def arr_to_str(arr: list[float]) -> str:\n    out_str = \"\"\n    for val in arr:\n        out_str += float_to_char(val)\n    return out_str\ndef str_to_arr(in_str: str) -> list[float]:\n    out_arr = []\n    for val in in_str:\n        out_arr.append(char_to_float(val))\n    return out_arr",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "str_to_arr",
+        "kind": 2,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "def str_to_arr(in_str: str) -> list[float]:\n    out_arr = []\n    for val in in_str:\n        out_arr.append(char_to_float(val))\n    return out_arr\ndb = sqlite3.connect(\"test.db\")\ncursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "db = sqlite3.connect(\"test.db\")\ncursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "cursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
+        "detail": "arr_to_str",
+        "documentation": {}
+    },
+    {
+        "label": "cmd",
+        "kind": 5,
+        "importPath": "arr_to_str",
+        "description": "arr_to_str",
+        "peekOfCode": "cmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
+        "detail": "arr_to_str",
         "documentation": {}
     },
     {
