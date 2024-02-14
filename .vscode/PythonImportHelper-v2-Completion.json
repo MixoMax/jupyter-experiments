@@ -27,6 +27,15 @@
         "documentation": {}
     },
     {
+        "label": "keyboard",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "keyboard",
+        "description": "keyboard",
+        "detail": "keyboard",
+        "documentation": {}
+    },
+    {
         "label": "sqlite3",
         "kind": 6,
         "isExtraImport": true,
@@ -152,6 +161,15 @@
         "description": "12_ton_technik",
         "peekOfCode": "unused_notes = list(note_lookup.keys())\nfor i in range(12):\n    pitch = random.choice(unused_notes)\n    unused_notes.remove(pitch)\n    octave = random.choice([3, 4, 5])\n    duration = random.choice([1, 2, 4, 8])\n    notes.append(Note(pitch, octave, duration))\nfor note in notes:\n    print(note)\n    note.play()",
         "detail": "12_ton_technik",
+        "documentation": {}
+    },
+    {
+        "label": "order",
+        "kind": 5,
+        "importPath": "2048",
+        "description": "2048",
+        "peekOfCode": "order = [\n    \"up\",\n    \"left\",\n    \"down\",\n    \"right\"\n]\ntime.sleep(3)\nwhile True:\n    for i in order:\n        #press arrow keys",
+        "detail": "2048",
         "documentation": {}
     },
     {
