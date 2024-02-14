@@ -27,29 +27,39 @@
         "documentation": {}
     },
     {
-        "label": "keyboard",
+        "label": "math",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "keyboard",
-        "description": "keyboard",
-        "detail": "keyboard",
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
         "documentation": {}
     },
     {
-        "label": "sqlite3",
+        "label": "tensorflow",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "sqlite3",
-        "description": "sqlite3",
-        "detail": "sqlite3",
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "detail": "tensorflow",
         "documentation": {}
     },
     {
-        "label": "tqdm",
-        "importPath": "tqdm",
-        "description": "tqdm",
+        "label": "tensorflow_text",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "tqdm",
+        "importPath": "tensorflow_text",
+        "description": "tensorflow_text",
+        "detail": "tensorflow_text",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow_hub",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow_hub",
+        "description": "tensorflow_hub",
+        "detail": "tensorflow_hub",
         "documentation": {}
     },
     {
@@ -112,6 +122,22 @@
         "documentation": {}
     },
     {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "bidict",
+        "importPath": "bidict",
+        "description": "bidict",
+        "isExtraImport": true,
+        "detail": "bidict",
+        "documentation": {}
+    },
+    {
         "label": "setup",
         "importPath": "setuptools",
         "description": "setuptools",
@@ -164,75 +190,39 @@
         "documentation": {}
     },
     {
-        "label": "order",
-        "kind": 5,
-        "importPath": "2048",
-        "description": "2048",
-        "peekOfCode": "order = [\n    \"up\",\n    \"left\",\n    \"down\",\n    \"right\"\n]\ntime.sleep(3)\nwhile True:\n    for i in order:\n        #press arrow keys",
-        "detail": "2048",
-        "documentation": {}
-    },
-    {
-        "label": "float_to_char",
+        "label": "float_arr_to_str_arr",
         "kind": 2,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "def float_to_char(val: float) -> str:\n    if val > 1.0 or val < -1.0:\n        raise ValueError(\"Value must be between -1.0 and 1.0\")\n    # remap from [-1.0, 1.0] to [0, 255]\n    val = int((val + 1) * 127.5)\n    return chr(val)\ndef char_to_float(val: str) -> float:\n    # remap from [0, 255] to [-1.0, 1.0]\n    return (ord(val) / 127.5) - 1\ndef arr_to_str(arr: list[float]) -> str:",
-        "detail": "arr_to_str",
+        "importPath": "float_to_str_arr",
+        "description": "float_to_str_arr",
+        "peekOfCode": "def float_arr_to_str_arr(float_arr: list[float]) -> str:\n    int_arr = [round((x + 1) * 127.5) for x in float_arr]\n    char_arr = [chr(x) for x in int_arr]\n    return \"\".join(char_arr)\ndef str_arr_to_float_arr(str_arr: str) -> list[float]:\n    int_arr = [ord(x) for x in str_arr]\n    float_arr = [(x / 127.5) - 1 for x in int_arr]\n    return float_arr\nimport tensorflow as tf\nimport tensorflow_text as text",
+        "detail": "float_to_str_arr",
         "documentation": {}
     },
     {
-        "label": "char_to_float",
+        "label": "str_arr_to_float_arr",
         "kind": 2,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "def char_to_float(val: str) -> float:\n    # remap from [0, 255] to [-1.0, 1.0]\n    return (ord(val) / 127.5) - 1\ndef arr_to_str(arr: list[float]) -> str:\n    out_str = \"\"\n    for val in arr:\n        out_str += float_to_char(val)\n    return out_str\ndef str_to_arr(in_str: str) -> list[float]:\n    out_arr = []",
-        "detail": "arr_to_str",
+        "importPath": "float_to_str_arr",
+        "description": "float_to_str_arr",
+        "peekOfCode": "def str_arr_to_float_arr(str_arr: str) -> list[float]:\n    int_arr = [ord(x) for x in str_arr]\n    float_arr = [(x / 127.5) - 1 for x in int_arr]\n    return float_arr\nimport tensorflow as tf\nimport tensorflow_text as text\nimport tensorflow_hub as hub\nmodel = hub.load(\"https://tfhub.dev/google/universal-sentence-encoder-multilingual/3\")\ndef embeddings(text: str) -> str:\n    embed = model([text])",
+        "detail": "float_to_str_arr",
         "documentation": {}
     },
     {
-        "label": "arr_to_str",
+        "label": "embeddings",
         "kind": 2,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "def arr_to_str(arr: list[float]) -> str:\n    out_str = \"\"\n    for val in arr:\n        out_str += float_to_char(val)\n    return out_str\ndef str_to_arr(in_str: str) -> list[float]:\n    out_arr = []\n    for val in in_str:\n        out_arr.append(char_to_float(val))\n    return out_arr",
-        "detail": "arr_to_str",
+        "importPath": "float_to_str_arr",
+        "description": "float_to_str_arr",
+        "peekOfCode": "def embeddings(text: str) -> str:\n    embed = model([text])\n    str_arr = float_arr_to_str_arr(embed[0])\n    return str_arr",
+        "detail": "float_to_str_arr",
         "documentation": {}
     },
     {
-        "label": "str_to_arr",
-        "kind": 2,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "def str_to_arr(in_str: str) -> list[float]:\n    out_arr = []\n    for val in in_str:\n        out_arr.append(char_to_float(val))\n    return out_arr\ndb = sqlite3.connect(\"test.db\")\ncursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data",
-        "detail": "arr_to_str",
-        "documentation": {}
-    },
-    {
-        "label": "db",
+        "label": "model",
         "kind": 5,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "db = sqlite3.connect(\"test.db\")\ncursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
-        "detail": "arr_to_str",
-        "documentation": {}
-    },
-    {
-        "label": "cursor",
-        "kind": 5,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "cursor = db.cursor()\ncmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
-        "detail": "arr_to_str",
-        "documentation": {}
-    },
-    {
-        "label": "cmd",
-        "kind": 5,
-        "importPath": "arr_to_str",
-        "description": "arr_to_str",
-        "peekOfCode": "cmd = \"CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, data TEXT)\"\ncursor.execute(cmd)\n# insert some data\nfor _ in tqdm(range(100_000)):\n    data = [random.uniform(-1, 1) for _ in range(1024)]\n    cursor.execute(\"INSERT INTO test (data) VALUES (?)\", (arr_to_str(data),))\ndb.commit()",
-        "detail": "arr_to_str",
+        "importPath": "float_to_str_arr",
+        "description": "float_to_str_arr",
+        "peekOfCode": "model = hub.load(\"https://tfhub.dev/google/universal-sentence-encoder-multilingual/3\")\ndef embeddings(text: str) -> str:\n    embed = model([text])\n    str_arr = float_arr_to_str_arr(embed[0])\n    return str_arr",
+        "detail": "float_to_str_arr",
         "documentation": {}
     },
     {
@@ -278,6 +268,51 @@
         "description": "gradio_sdxl_turbo",
         "peekOfCode": "iface = gr.Interface(\n    fn = generate_image,\n    inputs = [\n        gr.Textbox(placeholder=\"Enter a prompt...\"),\n        gr.Slider(label=\"Samples\", minimum=1, maximum=10, value=1, step=1),\n        gr.Number(label=\"Steps\", value=4, step=1),\n        gr.Slider(label=\"Scale\", minimum=0, maximum=14, value=7, step=1),\n        gr.Number(label=\"Seed\", value=0, step=1)\n    ],\n    outputs = gr.Image(label=\"Generated Image\"),",
         "detail": "gradio_sdxl_turbo",
+        "documentation": {}
+    },
+    {
+        "label": "Board",
+        "kind": 6,
+        "importPath": "inception_tic_tac_toe",
+        "description": "inception_tic_tac_toe",
+        "peekOfCode": "class Board:\n    __board: list[list[Union[str, None, \"Board\"]]]\n    def __init__(self) -> None:\n        self.__board = [[None for _ in range(3)] for _ in range(3)]\n    def get_value(self, x_cord: int, y_cord: int) -> Union[str, None, \"Board\"]:\n        return self.__board[x_cord][y_cord]\n    def set_value(self, x_cord: int, y_cord: int, value: str | None) -> None:\n        self.__board[x_cord][y_cord] = value\n    def clear(self) -> None:\n        self.fill(None)",
+        "detail": "inception_tic_tac_toe",
+        "documentation": {}
+    },
+    {
+        "label": "board",
+        "kind": 5,
+        "importPath": "inception_tic_tac_toe",
+        "description": "inception_tic_tac_toe",
+        "peekOfCode": "board = Board()\nfor x in range(3):\n    for y in range(3):\n        board.set_value(x, y, Board())\nnumpad_to_cords = { #numpad number -> (x, y)\n    #indexing starts from the top left\n    7: (0, 0),\n    8: (1, 0),\n    9: (2, 0),\n    4: (0, 1),",
+        "detail": "inception_tic_tac_toe",
+        "documentation": {}
+    },
+    {
+        "label": "numpad_to_cords",
+        "kind": 5,
+        "importPath": "inception_tic_tac_toe",
+        "description": "inception_tic_tac_toe",
+        "peekOfCode": "numpad_to_cords = { #numpad number -> (x, y)\n    #indexing starts from the top left\n    7: (0, 0),\n    8: (1, 0),\n    9: (2, 0),\n    4: (0, 1),\n    5: (1, 1),\n    6: (2, 1),\n    1: (0, 2),\n    2: (1, 2),",
+        "detail": "inception_tic_tac_toe",
+        "documentation": {}
+    },
+    {
+        "label": "numpad_to_cords",
+        "kind": 5,
+        "importPath": "inception_tic_tac_toe",
+        "description": "inception_tic_tac_toe",
+        "peekOfCode": "numpad_to_cords = bidict(numpad_to_cords)\ncurrent_playing_board = board.get_value(1, 1) #start in the middle board\nwhile True:\n    current_playing_board.show_numpad_numbers()\n    print(board.__repr__())\n    print(\"Player 1, make your move\")\n    move = int(input())\n    x_board, y_board = numpad_to_cords[move]\n    current_playing_board.set_value(y_board, x_board, \"X\")\n    current_playing_board.clear_numpad_numbers()",
+        "detail": "inception_tic_tac_toe",
+        "documentation": {}
+    },
+    {
+        "label": "current_playing_board",
+        "kind": 5,
+        "importPath": "inception_tic_tac_toe",
+        "description": "inception_tic_tac_toe",
+        "peekOfCode": "current_playing_board = board.get_value(1, 1) #start in the middle board\nwhile True:\n    current_playing_board.show_numpad_numbers()\n    print(board.__repr__())\n    print(\"Player 1, make your move\")\n    move = int(input())\n    x_board, y_board = numpad_to_cords[move]\n    current_playing_board.set_value(y_board, x_board, \"X\")\n    current_playing_board.clear_numpad_numbers()\n    won_player = current_playing_board.won_by()",
+        "detail": "inception_tic_tac_toe",
         "documentation": {}
     }
 ]
