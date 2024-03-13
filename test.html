@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+ <body id="search">
+  <div id="nav">
+   <a href="index.php" title="MTG Assist Home">
+    <img alt="MTG Assist - Simply the best Magic card search." id="logo" src="images/mtgassist-logo-rev.png"/>
+   </a>
+   <!-- <div id="mobile_menu"><i class="fa fa-bars"></i></div> -->
+   <div id="nav_links">
+    <!-- No links! -->
+   </div>
+   <div id="name_search">
+    <form action="search.php">
+     <input autocomplete="off" class="namesearch" id="name_search_solo" name="name" placeholder="Card name search" type="text"/>
+     <input class="button red_button rev_text" type="submit" value="Go!"/>
+     <div class="auto_suggest" id="auto_suggest2">
+     </div>
+    </form>
+   </div>
+  </div>
+  <div id="mobile_nav_links">
+   <a href="index.php" title="MTG Assist Home">
+    Home
+   </a>
+   <a href="articles/" title="MTG Articles">
+    Articles
+   </a>
+   <a href="https://twitter.com/MTGAssist" target="_blank" title="MTG Assist Twitter">
+    <i class="fa fa-twitter">
+    </i>
+   </a>
+   <a href="https://www.facebook.com/mtgassist" target="_blank" title="MTG Assist Facebook">
+    <i class="fa fa-facebook">
+    </i>
+   </a>
+   <a href="https://www.mtgassist.com/mtgassist_RSS.php" target="_blank" title="MTG Assist RSS Feed">
+    <i class="fa fa-rss-square">
+    </i>
+   </a>
+  </div>
+  <div id="advanced_search">
+   <form action="search.php" id="advanced_search_form">
+    <div id="advanced_search_wrapper">
+     <h3>
+      Advanced Card Search:
+     </h3>
+     <div class="search_category_wrapper">
+      <div class="form_item">
+       <span class="form_text">
+        Card name:
+       </span>
+       <input autocomplete="off" class="namesearch" name="name" placeholder="Enter card name..." type="text" value="Edgewall Innkeeper"/>
+       <div class="auto_suggest" id="auto_suggest1">
+       </div>
+      </div>
+      <div class="form_item">
+       <span class="form_text">
+        <strong>
+         Similar to:
+        </strong>
+       </span>
+       <input class="namesearch_advanced" name="similar_to" placeholder="Cards similar to..." type="text" value=""/>
+       <p class="small_text">
+        <em>
+         Combine with other search options!
+        </em>
+       </p>
+       <div class="clear">
+       </div>
+      </div>
+     </div>
+     <!-- TEXT AND TYPE -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_text_type">
+       Card text / Card type
+      </p>
+      <div class="search_categories" id="search_text_type">
+       <div class="form_item">
+        <span class="form_text">
+         Card text:
+        </span>
+        <input name="ability" placeholder="Text includes" type="text" value=""/>
+        <p class="small_text">
+         <em>
+          Quotes for phrases. IE: "Creature token"
+         </em>
+        </p>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Types:
+        </span>
+        <input name="type_subtype" placeholder="Type includes" type="text" value=""/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Permanent:
+        </span>
+        <select name="permanent">
+         <option value="">
+          Doesn't matter
+         </option>
+         <option>
+          Is a permanent
+         </option>
+         <option>
+          Not a permanent
+         </option>
+        </select>
+       </div>
+      </div>
+     </div>
+     <!-- NEGATIVE SEARCH -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_negative_search">
+       Negative search
+      </p>
+      <div class="search_categories" id="search_negative_search">
+       <div class="form_item">
+        <span class="form_text">
+         Card text to exclude:
+        </span>
+        <input name="negative_ability" placeholder="Text does NOT include" type="text" value=""/>
+        <p class="small_text">
+         <em>
+          Quotes for phrases. IE: "Creature token"
+         </em>
+        </p>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Types to exclude:
+        </span>
+        <input name="negative_type_subtype" placeholder="Type does NOT include" type="text" value=""/>
+       </div>
+      </div>
+     </div>
+     <!-- COLORS AND MANA -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_color_mana">
+       Colors / Mana cost
+      </p>
+      <div class="search_categories" id="search_color_mana">
+       <div class="form_item">
+        <span class="form_text">
+         Colors:
+        </span>
+        <label>
+         <input name="color[]" type="checkbox" value="W"/>
+         <span class="sprite_sm_W">
+         </span>
+        </label>
+        <label>
+         <input name="color[]" type="checkbox" value="U"/>
+         <span class="sprite_sm_U">
+         </span>
+        </label>
+        <label>
+         <input name="color[]" type="checkbox" value="B"/>
+         <span class="sprite_sm_B">
+         </span>
+        </label>
+        <label>
+         <input name="color[]" type="checkbox" value="R"/>
+         <span class="sprite_sm_R">
+         </span>
+        </label>
+        <label>
+         <input name="color[]" type="checkbox" value="G"/>
+         <span class="sprite_sm_G">
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input name="contains_all_colors" type="checkbox"/>
+         <span class="small_text">
+          Must contain all colors
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input name="req_multicolored" type="checkbox"/>
+         <span class="small_text">
+          Require multicolored
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input id="include_colorless_check" name="include_colorless" type="checkbox"/>
+         <span class="small_text">
+          Include colorless
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input id="exclude_check" name="exclude_selected" type="checkbox"/>
+         <span class="small_text">
+          Exclude unselected
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input id="commander_check" name="commander_colors" type="checkbox"/>
+         <span class="small_text">
+          Commander colors
+         </span>
+        </label>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Mana Produced:
+        </span>
+        <label>
+         <input name="mana[]" type="checkbox" value="W"/>
+         <span class="sprite_sm_W">
+         </span>
+        </label>
+        <label>
+         <input name="mana[]" type="checkbox" value="U"/>
+         <span class="sprite_sm_U">
+         </span>
+        </label>
+        <label>
+         <input name="mana[]" type="checkbox" value="B"/>
+         <span class="sprite_sm_B">
+         </span>
+        </label>
+        <label>
+         <input name="mana[]" type="checkbox" value="R"/>
+         <span class="sprite_sm_R">
+         </span>
+        </label>
+        <label>
+         <input name="mana[]" type="checkbox" value="G"/>
+         <span class="sprite_sm_G">
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input name="exclude_selected_mana" type="checkbox"/>
+         <span class="small_text">
+          Exclude unselected
+         </span>
+        </label>
+        <br/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         CMC:
+        </span>
+        <input class="numberforms" name="CMC_low" placeholder="min" type="number" value=""/>
+        <input class="numberforms" name="CMC_high" placeholder="max" type="number" value=""/>
+        <br/>
+        <span class="form_text">
+        </span>
+        <label>
+         <input name="contains_x" type="checkbox"/>
+         <span class="small_text">
+          Casting cost contains
+          <span class="sprite_sm_X">
+          </span>
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input name="phyrexian_mana" type="checkbox"/>
+         <span class="small_text">
+          Phyrexian mana
+         </span>
+        </label>
+        <br/>
+        <label>
+         <input name="alternate_cost" type="checkbox"/>
+         <span class="small_text">
+          Alternate casting cost
+         </span>
+        </label>
+       </div>
+      </div>
+     </div>
+     <!-- POWER AND TOUGHNESS -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_stats">
+       Power / Toughness
+      </p>
+      <div class="search_categories" id="search_stats">
+       <div class="form_item">
+        <span class="form_text">
+         Power:
+        </span>
+        <input class="numberforms" name="power_low" placeholder="min" type="number" value=""/>
+        <input class="numberforms" name="power_high" placeholder="max" type="number" value=""/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Toughness:
+        </span>
+        <input class="numberforms" name="toughness_low" placeholder="min" type="number" value=""/>
+        <input class="numberforms" name="toughness_high" placeholder="max" type="number" value=""/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         P + T =
+        </span>
+        <input class="numberforms" name="total_pt_low" placeholder="min" type="number" value=""/>
+        <input class="numberforms" name="total_pt_high" placeholder="max" type="number" value=""/>
+       </div>
+      </div>
+     </div>
+     <!-- PRICE AND RATING -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_price_rating">
+       Price / Rating
+      </p>
+      <div class="search_categories" id="search_price_rating">
+       <div class="form_item">
+        <span class="form_text">
+         Card Rating:
+        </span>
+        <input class="numberforms" name="rating_low" placeholder="0" step="any" type="number" value=""/>
+        <input class="numberforms" name="rating_high" placeholder="10" step="any" type="number" value=""/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Price:
+        </span>
+        <input class="numberforms" name="price_low" placeholder="min $" step="any" type="number" value=""/>
+        <input class="numberforms" name="price_high" placeholder="max $" step="any" type="number" value=""/>
+       </div>
+      </div>
+     </div>
+     <!-- SETS AND FORMATS -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_format">
+       Set / Format
+      </p>
+      <div class="search_categories" id="search_format">
+       <div class="form_item">
+        <span class="form_text">
+         Format:
+        </span>
+        <select name="format">
+         <option value="">
+          All formats
+         </option>
+         <option value="Standard">
+          Standard
+         </option>
+         <option value="Pioneer">
+          Pioneer
+         </option>
+         <option value="Modern">
+          Modern
+         </option>
+         <option value="Legacy">
+          Legacy
+         </option>
+         <option value="Vintage">
+          Vintage
+         </option>
+         <option value="Commander">
+          Commander
+         </option>
+         <option value="Brawl">
+          Brawl
+         </option>
+        </select>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Card Set:
+        </span>
+        <select name="expansion">
+         <option value="">
+          All sets
+         </option>
+         <option value="afr">
+          Adventures in the Forgotten Realms
+         </option>
+         <option value="aer">
+          Aether Revolt
+         </option>
+         <option value="arb">
+          Alara Reborn
+         </option>
+         <option value="hbg">
+          Alchemy Horizons: Baldur's Gate
+         </option>
+         <option value="ymid">
+          Alchemy: Innistrad
+         </option>
+         <option value="yneo">
+          Alchemy: Kamigawa
+         </option>
+         <option value="ysnc">
+          Alchemy: New Capenna
+         </option>
+         <option value="all">
+          Alliances
+         </option>
+         <option value="akh">
+          Amonkhet
+         </option>
+         <option value="mp2">
+          Amonkhet Invocations
+         </option>
+         <option value="akr">
+          Amonkhet Remastered
+         </option>
+         <option value="atq">
+          Antiquities
+         </option>
+         <option value="apc">
+          Apocalypse
+         </option>
+         <option value="arn">
+          Arabian Nights
+         </option>
+         <option value="arc">
+          Archenemy
+         </option>
+         <option value="e01">
+          Archenemy: Nicol Bolas
+         </option>
+         <option value="anb">
+          Arena Beginner Set
+         </option>
+         <option value="avr">
+          Avacyn Restored
+         </option>
+         <option value="bfz">
+          Battle for Zendikar
+         </option>
+         <option value="brb">
+          Battle Royale Box Set
+         </option>
+         <option value="bbd">
+          Battlebond
+         </option>
+         <option value="btd">
+          Beatdown Box Set
+         </option>
+         <option value="bok">
+          Betrayers of Kamigawa
+         </option>
+         <option value="bng">
+          Born of the Gods
+         </option>
+         <option value="chk">
+          Champions of Kamigawa
+         </option>
+         <option value="pchk">
+          Champions of Kamigawa Promos
+         </option>
+         <option value="chr">
+          Chronicles
+         </option>
+         <option value="6ed">
+          Classic Sixth Edition
+         </option>
+         <option value="csp">
+          Coldsnap
+         </option>
+         <option value="cmd">
+          Commander 2011
+         </option>
+         <option value="c13">
+          Commander 2013
+         </option>
+         <option value="c14">
+          Commander 2014
+         </option>
+         <option value="c15">
+          Commander 2015
+         </option>
+         <option value="c16">
+          Commander 2016
+         </option>
+         <option value="c17">
+          Commander 2017
+         </option>
+         <option value="c18">
+          Commander 2018
+         </option>
+         <option value="c19">
+          Commander 2019
+         </option>
+         <option value="c20">
+          Commander 2020
+         </option>
+         <option value="c21">
+          Commander 2021
+         </option>
+         <option value="cma">
+          Commander Anthology
+         </option>
+         <option value="cm2">
+          Commander Anthology Volume II
+         </option>
+         <option value="cc1">
+          Commander Collection: Green
+         </option>
+         <option value="cmr">
+          Commander Legends
+         </option>
+         <option value="clb">
+          Commander Legends: Battle for Baldur's Gate
+         </option>
+         <option value="cmm">
+          Commander Masters
+         </option>
+         <option value="cm1">
+          Commander's Arsenal
+         </option>
+         <option value="con">
+          Conflux
+         </option>
+         <option value="cns">
+          Conspiracy
+         </option>
+         <option value="cn2">
+          Conspiracy: Take the Crown
+         </option>
+         <option value="m19">
+          Core Set 2019
+         </option>
+         <option value="m20">
+          Core Set 2020
+         </option>
+         <option value="m21">
+          Core Set 2021
+         </option>
+         <option value="voc">
+          Crimson Vow Commander
+         </option>
+         <option value="dka">
+          Dark Ascension
+         </option>
+         <option value="dst">
+          Darksteel
+         </option>
+         <option value="pdst">
+          Darksteel Promos
+         </option>
+         <option value="dis">
+          Dissension
+         </option>
+         <option value="who">
+          Doctor Who
+         </option>
+         <option value="dom">
+          Dominaria
+         </option>
+         <option value="dmr">
+          Dominaria Remastered
+         </option>
+         <option value="dmu">
+          Dominaria United
+         </option>
+         <option value="dmc">
+          Dominaria United Commander
+         </option>
+         <option value="2xm">
+          Double Masters
+         </option>
+         <option value="2x2">
+          Double Masters 2022
+         </option>
+         <option value="pdrc">
+          Dragon Con
+         </option>
+         <option value="dgm">
+          Dragon's Maze
+         </option>
+         <option value="dtk">
+          Dragons of Tarkir
+         </option>
+         <option value="dvd">
+          Duel Decks Anthology: Divine vs. Demonic
+         </option>
+         <option value="evg">
+          Duel Decks Anthology: Elves vs. Goblins
+         </option>
+         <option value="gvl">
+          Duel Decks Anthology: Garruk vs. Liliana
+         </option>
+         <option value="jvc">
+          Duel Decks Anthology: Jace vs. Chandra
+         </option>
+         <option value="ddh">
+          Duel Decks: Ajani vs. Nicol Bolas
+         </option>
+         <option value="ddq">
+          Duel Decks: Blessed vs. Cursed
+         </option>
+         <option value="ddo">
+          Duel Decks: Elspeth vs. Kiora
+         </option>
+         <option value="ddf">
+          Duel Decks: Elspeth vs. Tezzeret
+         </option>
+         <option value="dd1">
+          Duel Decks: Elves vs. Goblins
+         </option>
+         <option value="ddu">
+          Duel Decks: Elves vs. Inventors
+         </option>
+         <option value="ddl">
+          Duel Decks: Heroes vs. Monsters
+         </option>
+         <option value="ddj">
+          Duel Decks: Izzet vs. Golgari
+         </option>
+         <option value="dd2">
+          Duel Decks: Jace vs. Chandra
+         </option>
+         <option value="ddm">
+          Duel Decks: Jace vs. Vraska
+         </option>
+         <option value="ddg">
+          Duel Decks: Knights vs. Dragons
+         </option>
+         <option value="ddt">
+          Duel Decks: Merfolk vs. Goblins
+         </option>
+         <option value="dds">
+          Duel Decks: Mind vs. Might
+         </option>
+         <option value="ddr">
+          Duel Decks: Nissa vs. Ob Nixilis
+         </option>
+         <option value="dde">
+          Duel Decks: Phyrexia vs. the Coalition
+         </option>
+         <option value="ddk">
+          Duel Decks: Sorin vs. Tibalt
+         </option>
+         <option value="ddn">
+          Duel Decks: Speed vs. Cunning
+         </option>
+         <option value="ddi">
+          Duel Decks: Venser vs. Koth
+         </option>
+         <option value="ddp">
+          Duel Decks: Zendikar vs. Eldrazi
+         </option>
+         <option value="8ed">
+          Eighth Edition
+         </option>
+         <option value="emn">
+          Eldritch Moon
+         </option>
+         <option value="ema">
+          Eternal Masters
+         </option>
+         <option value="eve">
+          Eventide
+         </option>
+         <option value="exo">
+          Exodus
+         </option>
+         <option value="e02">
+          Explorers of Ixalan
+         </option>
+         <option value="fem">
+          Fallen Empires
+         </option>
+         <option value="frf">
+          Fate Reforged
+         </option>
+         <option value="5dn">
+          Fifth Dawn
+         </option>
+         <option value="p5dn">
+          Fifth Dawn Promos
+         </option>
+         <option value="5ed">
+          Fifth Edition
+         </option>
+         <option value="afc">
+          Forgotten Realms Commander
+         </option>
+         <option value="4ed">
+          Fourth Edition
+         </option>
+         <option value="v15">
+          From the Vault: Angels
+         </option>
+         <option value="v14">
+          From the Vault: Annihilation
+         </option>
+         <option value="drb">
+          From the Vault: Dragons
+         </option>
+         <option value="v09">
+          From the Vault: Exiled
+         </option>
+         <option value="v11">
+          From the Vault: Legends
+         </option>
+         <option value="v16">
+          From the Vault: Lore
+         </option>
+         <option value="v12">
+          From the Vault: Realms
+         </option>
+         <option value="v10">
+          From the Vault: Relics
+         </option>
+         <option value="v17">
+          From the Vault: Transform
+         </option>
+         <option value="v13">
+          From the Vault: Twenty
+         </option>
+         <option value="fut">
+          Future Sight
+         </option>
+         <option value="gnt">
+          Game Night
+         </option>
+         <option value="gn2">
+          Game Night 2019
+         </option>
+         <option value="gn3">
+          Game Night: Free-for-All
+         </option>
+         <option value="gtc">
+          Gatecrash
+         </option>
+         <option value="gs1">
+          Global Series Jiang Yanggu &amp; Mu Yanling
+         </option>
+         <option value="gk1">
+          GRN Guild Kit
+         </option>
+         <option value="gpt">
+          Guildpact
+         </option>
+         <option value="grn">
+          Guilds of Ravnica
+         </option>
+         <option value="phpr">
+          HarperPrism Book Promos
+         </option>
+         <option value="ha1">
+          Historic Anthology 1
+         </option>
+         <option value="ha2">
+          Historic Anthology 2
+         </option>
+         <option value="ha3">
+          Historic Anthology 3
+         </option>
+         <option value="ha4">
+          Historic Anthology 4
+         </option>
+         <option value="ha5">
+          Historic Anthology 5
+         </option>
+         <option value="hml">
+          Homelands
+         </option>
+         <option value="hou">
+          Hour of Devastation
+         </option>
+         <option value="ice">
+          Ice Age
+         </option>
+         <option value="ima">
+          Iconic Masters
+         </option>
+         <option value="iko">
+          Ikoria: Lair of Behemoths
+         </option>
+         <option value="isd">
+          Innistrad
+         </option>
+         <option value="vow">
+          Innistrad: Crimson Vow
+         </option>
+         <option value="mid">
+          Innistrad: Midnight Hunt
+         </option>
+         <option value="inv">
+          Invasion
+         </option>
+         <option value="xln">
+          Ixalan
+         </option>
+         <option value="jou">
+          Journey into Nyx
+         </option>
+         <option value="jud">
+          Judgment
+         </option>
+         <option value="jmp">
+          Jumpstart
+         </option>
+         <option value="j22">
+          Jumpstart 2022
+         </option>
+         <option value="j21">
+          Jumpstart: Historic Horizons
+         </option>
+         <option value="rex">
+          Jurassic World Collection
+         </option>
+         <option value="kld">
+          Kaladesh
+         </option>
+         <option value="mps">
+          Kaladesh Inventions
+         </option>
+         <option value="klr">
+          Kaladesh Remastered
+         </option>
+         <option value="khm">
+          Kaldheim
+         </option>
+         <option value="khc">
+          Kaldheim Commander
+         </option>
+         <option value="neo">
+          Kamigawa: Neon Dynasty
+         </option>
+         <option value="ktk">
+          Khans of Tarkir
+         </option>
+         <option value="leg">
+          Legends
+         </option>
+         <option value="lgn">
+          Legions
+         </option>
+         <option value="lea">
+          Limited Edition Alpha
+         </option>
+         <option value="lrw">
+          Lorwyn
+         </option>
+         <option value="g18">
+          M19 Gift Pack
+         </option>
+         <option value="m10">
+          Magic 2010
+         </option>
+         <option value="m11">
+          Magic 2011
+         </option>
+         <option value="m12">
+          Magic 2012
+         </option>
+         <option value="m13">
+          Magic 2013
+         </option>
+         <option value="m14">
+          Magic 2014
+         </option>
+         <option value="m15">
+          Magic 2015
+         </option>
+         <option value="ori">
+          Magic Origins
+         </option>
+         <option value="mom">
+          March of the Machine
+         </option>
+         <option value="moc">
+          March of the Machine Commander
+         </option>
+         <option value="mat">
+          March of the Machine: The Aftermath
+         </option>
+         <option value="a25">
+          Masters 25
+         </option>
+         <option value="me1">
+          Masters Edition
+         </option>
+         <option value="me2">
+          Masters Edition II
+         </option>
+         <option value="me3">
+          Masters Edition III
+         </option>
+         <option value="me4">
+          Masters Edition IV
+         </option>
+         <option value="pmei">
+          Media Inserts
+         </option>
+         <option value="mmq">
+          Mercadian Masques
+         </option>
+         <option value="mic">
+          Midnight Hunt Commander
+         </option>
+         <option value="mir">
+          Mirage
+         </option>
+         <option value="mrd">
+          Mirrodin
+         </option>
+         <option value="mbs">
+          Mirrodin Besieged
+         </option>
+         <option value="pmrd">
+          Mirrodin Promos
+         </option>
+         <option value="md1">
+          Modern Event Deck 2014
+         </option>
+         <option value="mh1">
+          Modern Horizons
+         </option>
+         <option value="mh2">
+          Modern Horizons 2
+         </option>
+         <option value="mma">
+          Modern Masters
+         </option>
+         <option value="mm2">
+          Modern Masters 2015
+         </option>
+         <option value="mm3">
+          Modern Masters 2017
+         </option>
+         <option value="mor">
+          Morningtide
+         </option>
+         <option value="mul">
+          Multiverse Legends
+         </option>
+         <option value="mkm">
+          Murders at Karlov Manor
+         </option>
+         <option value="mkc">
+          Murders at Karlov Manor Commander
+         </option>
+         <option value="med">
+          Mythic Edition
+         </option>
+         <option value="nem">
+          Nemesis
+         </option>
+         <option value="nec">
+          Neon Dynasty Commander
+         </option>
+         <option value="ncc">
+          New Capenna Commander
+         </option>
+         <option value="nph">
+          New Phyrexia
+         </option>
+         <option value="9ed">
+          Ninth Edition
+         </option>
+         <option value="ogw">
+          Oath of the Gatewatch
+         </option>
+         <option value="ody">
+          Odyssey
+         </option>
+         <option value="ons">
+          Onslaught
+         </option>
+         <option value="one">
+          Phyrexia: All Will Be One
+         </option>
+         <option value="onc">
+          Phyrexia: All Will Be One Commander
+         </option>
+         <option value="plc">
+          Planar Chaos
+         </option>
+         <option value="hop">
+          Planechase
+         </option>
+         <option value="pca">
+          Planechase Anthology
+         </option>
+         <option value="pls">
+          Planeshift
+         </option>
+         <option value="por">
+          Portal
+         </option>
+         <option value="p02">
+          Portal Second Age
+         </option>
+         <option value="ptk">
+          Portal Three Kingdoms
+         </option>
+         <option value="pd2">
+          Premium Deck Series: Fire and Lightning
+         </option>
+         <option value="pd3">
+          Premium Deck Series: Graveborn
+         </option>
+         <option value="h09">
+          Premium Deck Series: Slivers
+         </option>
+         <option value="pcy">
+          Prophecy
+         </option>
+         <option value="rna">
+          Ravnica Allegiance
+         </option>
+         <option value="rvr">
+          Ravnica Remastered
+         </option>
+         <option value="rav">
+          Ravnica: City of Guilds
+         </option>
+         <option value="rtr">
+          Return to Ravnica
+         </option>
+         <option value="3ed">
+          Revised Edition
+         </option>
+         <option value="roe">
+          Rise of the Eldrazi
+         </option>
+         <option value="rix">
+          Rivals of Ixalan
+         </option>
+         <option value="gk2">
+          RNA Guild Kit
+         </option>
+         <option value="sok">
+          Saviors of Kamigawa
+         </option>
+         <option value="som">
+          Scars of Mirrodin
+         </option>
+         <option value="scg">
+          Scourge
+         </option>
+         <option value="sld">
+          Secret Lair Drop
+         </option>
+         <option value="7ed">
+          Seventh Edition
+         </option>
+         <option value="shm">
+          Shadowmoor
+         </option>
+         <option value="sis">
+          Shadows of the Past
+         </option>
+         <option value="soi">
+          Shadows over Innistrad
+         </option>
+         <option value="sir">
+          Shadows over Innistrad Remastered
+         </option>
+         <option value="ala">
+          Shards of Alara
+         </option>
+         <option value="ss2">
+          Signature Spellbook: Gideon
+         </option>
+         <option value="ss1">
+          Signature Spellbook: Jace
+         </option>
+         <option value="spg">
+          Special Guests
+         </option>
+         <option value="s99">
+          Starter 1999
+         </option>
+         <option value="s00">
+          Starter 2000
+         </option>
+         <option value="snc">
+          Streets of New Capenna
+         </option>
+         <option value="sta">
+          Strixhaven Mystical Archive
+         </option>
+         <option value="stx">
+          Strixhaven: School of Mages
+         </option>
+         <option value="sth">
+          Stronghold
+         </option>
+         <option value="ltc">
+          Tales of Middle-earth Commander
+         </option>
+         <option value="tmp">
+          Tempest
+         </option>
+         <option value="tpr">
+          Tempest Remastered
+         </option>
+         <option value="10e">
+          Tenth Edition
+         </option>
+         <option value="bro">
+          The Brothers' War
+         </option>
+         <option value="brc">
+          The Brothers' War Commander
+         </option>
+         <option value="brr">
+          The Brothers' War Retro Artifacts
+         </option>
+         <option value="drk">
+          The Dark
+         </option>
+         <option value="ltr">
+          The Lord of the Rings: Tales of Middle-earth
+         </option>
+         <option value="lci">
+          The Lost Caverns of Ixalan
+         </option>
+         <option value="lcc">
+          The Lost Caverns of Ixalan Commander
+         </option>
+         <option value="ths">
+          Theros
+         </option>
+         <option value="thb">
+          Theros Beyond Death
+         </option>
+         <option value="eld">
+          Throne of Eldraine
+         </option>
+         <option value="tsp">
+          Time Spiral
+         </option>
+         <option value="tsr">
+          Time Spiral Remastered
+         </option>
+         <option value="tsb">
+          Time Spiral Timeshifted
+         </option>
+         <option value="tor">
+          Torment
+         </option>
+         <option value="bot">
+          Transformers
+         </option>
+         <option value="puma">
+          Ultimate Box Topper
+         </option>
+         <option value="uma">
+          Ultimate Masters
+         </option>
+         <option value="unf">
+          Unfinity
+         </option>
+         <option value="sunf">
+          Unfinity Sticker Sheets
+         </option>
+         <option value="ugl">
+          Unglued
+         </option>
+         <option value="unh">
+          Unhinged
+         </option>
+         <option value="2ed">
+          Unlimited Edition
+         </option>
+         <option value="und">
+          Unsanctioned
+         </option>
+         <option value="ust">
+          Unstable
+         </option>
+         <option value="uds">
+          Urza's Destiny
+         </option>
+         <option value="ulg">
+          Urza's Legacy
+         </option>
+         <option value="usg">
+          Urza's Saga
+         </option>
+         <option value="vma">
+          Vintage Masters
+         </option>
+         <option value="vis">
+          Visions
+         </option>
+         <option value="war">
+          War of the Spark
+         </option>
+         <option value="40k">
+          Warhammer 40,000 Commander
+         </option>
+         <option value="wth">
+          Weatherlight
+         </option>
+         <option value="w16">
+          Welcome Deck 2016
+         </option>
+         <option value="w17">
+          Welcome Deck 2017
+         </option>
+         <option value="woe">
+          Wilds of Eldraine
+         </option>
+         <option value="woc">
+          Wilds of Eldraine Commander
+         </option>
+         <option value="wot">
+          Wilds of Eldraine: Enchanting Tales
+         </option>
+         <option value="wwk">
+          Worldwake
+         </option>
+         <option value="zen">
+          Zendikar
+         </option>
+         <option value="exp">
+          Zendikar Expeditions
+         </option>
+         <option value="znr">
+          Zendikar Rising
+         </option>
+         <option value="znc">
+          Zendikar Rising Commander
+         </option>
+         <option value="zne">
+          Zendikar Rising Expeditions
+         </option>
+        </select>
+       </div>
+      </div>
+     </div>
+     <!-- RARITY, FLAVOR, AND ARTIST -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_rarity">
+       Rarity / Flavor / Artist
+      </p>
+      <div class="search_categories" id="search_rarity">
+       <div class="form_item">
+        <span class="form_text">
+         Rarity:
+        </span>
+        <label>
+         <input name="rarity[]" type="checkbox" value="common"/>
+         <span class="rarity">
+          C
+         </span>
+        </label>
+        <label>
+         <input name="rarity[]" type="checkbox" value="uncommon"/>
+         <span class="rarity uncommon">
+          U
+         </span>
+        </label>
+        <label>
+         <input name="rarity[]" type="checkbox" value="rare"/>
+         <span class="rarity rare">
+          R
+         </span>
+        </label>
+        <label>
+         <input name="rarity[]" type="checkbox" value="mythic"/>
+         <span class="rarity mythic">
+          M
+         </span>
+        </label>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Flavor Text:
+        </span>
+        <input name="flavor_text" type="text" value=""/>
+       </div>
+       <div class="form_item">
+        <span class="form_text">
+         Artist:
+        </span>
+        <input name="artist" type="text" value=""/>
+       </div>
+      </div>
+     </div>
+     <!-- DISPLAY OPTIONS -->
+     <div class="search_category_wrapper">
+      <div class="plus_minus">
+      </div>
+      <p class="search_category_expand" id="expand_display">
+       Search display options
+      </p>
+      <div class="search_categories" id="search_display">
+       <span>
+        <span class="form_text">
+         Results per page:
+        </span>
+        <select class="small_form" name="results_per_page">
+         <option selected="">
+          20
+         </option>
+         <option>
+          50
+         </option>
+         <option>
+          100
+         </option>
+        </select>
+       </span>
+       <span>
+        <span class="form_text">
+         Sort by:
+        </span>
+        <select name="sort_by">
+         <option value="name_asc">
+          Name (A-Z)
+         </option>
+         <option value="name_desc">
+          Name (Z-A)
+         </option>
+         <option value="rating_desc">
+          Rating (high first)
+         </option>
+         <option value="rating_asc">
+          Rating (low first)
+         </option>
+         <option value="price_asc">
+          Price (low first)
+         </option>
+         <option value="price_desc">
+          Price (high first)
+         </option>
+         <option value="CMC_asc">
+          CMC (low first)
+         </option>
+         <option value="CMC_desc">
+          CMC (high first)
+         </option>
+         <option value="random">
+          Random
+         </option>
+        </select>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="centered margin_above">
+     <input class="button red_button" onclick="resetForm()" type="reset" value="Clear all"/>
+     <input class="button blue_button" type="submit" value="Search!"/>
+    </div>
+   </form>
+   <div class="hor_line">
+   </div>
+   <div class="centered margin_above">
+    <a class="button rev_text" href="cards/Unstable/Labro-Bot/">
+     Random card
+    </a>
+   </div>
+   <div class="hor_line">
+   </div>
+   <div class="sidebar_ad">
+    <!-- MTG Assist - 160x600 Dynamic (606199aee8fdeb39324f4e8e) - 160x600, 200x200 - Place in <BODY> of page where ad should appear -->
+    <div class="vm-placement" data-id="606199aee8fdeb39324f4e8e">
+    </div>
+    <!-- / MTG Assist - 160x600 Dynamic (606199aee8fdeb39324f4e8e) -->
+    <!-- MTG Assist -  300x250 Dynamic (6045f8bb5adad97046066ffc) - 300x250, 160x600, 300x600 - Place in <BODY> of page where ad should appear -->
+    <!-- <div class="vm-placement" data-id="6045f8bb5adad97046066ffc"></div>-->
+    <!-- / MTG Assist -  300x250 Dynamic (6045f8bb5adad97046066ffc) -->
+    <!-- MTG Assist - small square ad 1 OLD ADSENSE CODE
+	<ins class="adsbygoogle"
+	style="display:inline-block;width:200px;height:200px"
+	data-ad-client="ca-pub-2163121351010214"
+	data-ad-slot="3396717172"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script> -->
+   </div>
+   <span class="ezoic-adpicker-ad" id="ezoic-pub-ad-placeholder-105">
+   </span>
+   <span data-ez-ph-id="105" style="float:none !important;margin-right:auto !important;display:block !important;min-width:160px;min-height:600px;line-height:0px;margin-top:15px !important;margin-bottom:15px !important;margin-left:auto !important;text-align:center !important;max-width:100% !important;padding:0;">
+   </span>
+  </div>
+  <div id="page_content_wrapper">
+   <div class="full_width_wrapper">
+    <div class="content_box">
+     <span class="ezoic-adpicker-ad" id="ezoic-pub-ad-placeholder-114">
+     </span>
+     <span data-ez-ph-id="114" style="text-align:center !important;min-height:280px;line-height:0px;float:none !important;margin-top:15px !important;margin-right:auto !important;margin-bottom:15px !important;margin-left:auto !important;display:block !important;min-width:336px;max-width:100% !important;padding:0;">
+     </span>
+     <div class="header_ad">
+      <div class="vm-placement" data-format="isvideo" id="vm-av">
+      </div>
+      <!--<script>
+
+<div id="ad-container-1"></div>
+
+window.top.__vm_add = window.top.__vm_add || [];
+//this is a x-browser way to make sure content has loaded.
+(function(success) {
+if(window.document.readyState !== "loading"){
+success();
+} else {
+window.document.addEventListener("DOMContentLoaded", function(){
+success();
+});
+}
+})(function(){
+var placement = document.createElement("div");
+placement.setAttribute("class", "vm-placement");
+if(window.innerWidth > 1000){
+//load 728x90 dynamic
+placement.setAttribute("data-id", "6045f8db8cbfbf75c6ebfcee");
+} else {
+//load 300x50 dynamic
+placement.setAttribute("data-id", "6045f9005adad97046066ffe");
+}
+document.querySelector("#ad-container-1").appendChild(placement);
+window.top.__vm_add.push(placement);
+});
+</script>-->
+     </div>
+     <span class="button blue_button margin_below" id="edit_search">
+      ← Edit search
+     </span>
+     <a class="button rev_text" href="cards/Unstable/Labro-Bot/" id="random_card">
+      Random card
+     </a>
+     <h2>
+      Search Results
+      <span class="small_text">
+       (1)
+      </span>
+     </h2>
+     <div class="page_numbers">
+     </div>
+     <div class="hor_line">
+     </div>
+     <div class="result_box">
+      <div class="result_box_content">
+       <a href="cards/Throne-of-Eldraine/Edgewall-Innkeeper/" title="Edgewall Innkeeper">
+        <img alt="Edgewall Innkeeper" class="lazy image_thumb" data-original="card_scans_sm/eld/Edgewall-Innkeeper.jpg" src="images/magic-card-back.jpg"/>
+       </a>
+       <div class="mana_cost">
+        <span class="sprite_sm_G">
+        </span>
+       </div>
+       <h3>
+        <a href="cards/Throne-of-Eldraine/Edgewall-Innkeeper/" title="Edgewall Innkeeper">
+         Edgewall Innkeeper
+        </a>
+       </h3>
+       <p>
+        <em>
+         Creature — Human Peasant
+        </em>
+        <strong>
+         (1/1)
+        </strong>
+       </p>
+       <p>
+        Whenever you cast a creature spell that has an Adventure, draw a card. (It doesn't need to have gone on the adventure first.)
+       </p>
+       <div class="clear">
+       </div>
+       <div class="result_details">
+        <div class="small_box small_text">
+         <strong>
+          6.7
+         </strong>
+         <span class="even_smaller">
+          /10
+         </span>
+        </div>
+        <div class="small_box green_box small_text">
+         <strong>
+          $0.13
+         </strong>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="clear">
+     </div>
+     <div class="hor_line">
+     </div>
+     <div class="page_numbers">
+     </div>
+    </div>
+    <div class="content_box">
+     <div class="hor_line">
+     </div>
+     <div class="header_ad">
+      <div class="desktop_only">
+       <!-- MTG Assist - 728x90 - 970x90 Dynamic 2 (60c8acd1933f122cc723a728) - 728x90, 970x90 - Place in <BODY> of page where ad should appear -->
+       <div class="vm-placement" data-id="60c8acd1933f122cc723a728">
+       </div>
+       <!-- / MTG Assist - 728x90 - 970x90 Dynamic 2 (60c8acd1933f122cc723a728) -->
+      </div>
+      <div class="mobile_only">
+       <!-- MTG Assist - 300x50 Dynamic Mobile 2 (60c8add5933f122cc723a72a) - 300x50, 320x50, 300x100, 320x100 - Place in <BODY> of page where ad should appear -->
+       <div class="vm-placement" data-id="60c8add5933f122cc723a72a">
+       </div>
+       <!-- / MTG Assist - 300x50 Dynamic Mobile 2 (60c8add5933f122cc723a72a) -->
+      </div>
+      <!-- MTG Assist - responsive bottom
+		<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2163121351010214"
+		data-ad-slot="3808441478"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script> -->
+     </div>
+     <div class="hor_line">
+     </div>
+     <p class="small_text">
+      © 2024 MTG Assist •
+      <a href="http://www.diabolictutor.com/" target="_blank" title="DiabolicTutor.com">
+       DiabolicTutor.com
+      </a>
+      •
+      <a href="http://www.lorcanaborn.com/" target="_blank" title="LorcanaBorn.com">
+       LorcanaBorn.com
+      </a>
+      •
+      <a href="terms.php" title="Terms of Use / Privacy Policy">
+       Terms of Use / Privacy Policy
+      </a>
+      •
+      <a href="contact/" title="Contact MTG Assist">
+       Contact MTG Assist
+      </a>
+      •
+      <a href="https://twitter.com/MTGAssist" target="_blank" title="MTG Assist Twitter">
+       <i class="fa fa-twitter">
+       </i>
+      </a>
+      <a href="https://www.facebook.com/mtgassist" target="_blank" title="MTG Assist Facebook">
+       <i class="fa fa-facebook">
+       </i>
+      </a>
+     </p>
+     <p class="tiny_text">
+      Magic: the Gathering is trademark and copyright Wizards of the Coast, Inc., a subsidiary of Hasbro, Inc. All rights reserved. MTGAssist.com is not affiliated with these entities.
+     </p>
+     <div class="buffer">
+     </div>
+     <div class="buffer">
+     </div>
+    </div>
+    <div id="right_ads">
+     <!-- MTG Assist - 300x250 Static 1 (60c8adfd933f122cc723a72e) - 300x250 - Place in <BODY> of page where ad should appear -->
+     <div class="vm-placement lazy" data-id="60c8adfd933f122cc723a72e">
+     </div>
+     <!-- / MTG Assist - 300x250 Static 1 (60c8adfd933f122cc723a72e) -->
+     <span class="ezoic-adpicker-ad" id="ezoic-pub-ad-placeholder-104">
+     </span>
+     <span data-ez-ph-id="104" style="min-width:336px;min-height:280px;padding:0;margin-right:auto !important;margin-bottom:15px !important;margin-left:auto !important;text-align:center !important;max-width:100% !important;line-height:0px;float:none !important;margin-top:15px !important;display:block !important;">
+     </span>
+     <div class="buffer">
+     </div>
+     <!-- MTG Assist - 300x250 Static 2 (60c8ae0f933f122cc723a731) - 300x250 - Place in <BODY> of page where ad should appear -->
+     <div class="vm-placement lazy" data-id="60c8ae0f933f122cc723a731">
+     </div>
+     <!-- / MTG Assist - 300x250 Static 2 (60c8ae0f933f122cc723a731) -->
+     <div class="buffer">
+     </div>
+     <!-- MTG Assist - 300x250 Static 3 (60c8ae19933f122cc723a733) - 300x250 - Place in <BODY> of page where ad should appear -->
+     <div class="vm-placement lazy" data-id="60c8ae19933f122cc723a733">
+     </div>
+     <!-- / MTG Assist - 300x250 Static 3 (60c8ae19933f122cc723a733) -->
+    </div>
+    <div id="black_bg">
+    </div>
+    <div id="debug">
+    </div>
+    <!-- MTG Assist -  Rich Media (6045f9198cbfbf75c6ebfcf2) - 1x1 - Place in <BODY> of page where ad should appear -->
+    <div class="vm-placement" data-id="6045f9198cbfbf75c6ebfcf2" style="display:none">
+    </div>
+    <!-- / MTG Assist -  Rich Media (6045f9198cbfbf75c6ebfcf2) -->
+   </div>
+  </div>
+  <div class="ezmob-footer ezoic-floating-bottom ezo_ad ezmob-footer-desktop" id="ezmobfooter">
+   <center>
+    <span id="ezoic-pub-ad-placeholder-100">
+    </span>
+    <span data-ez-ph-id="100" style="min-height:90px;max-width:100% !important;line-height:0px;padding:0;float:none !important;display:inline-block;min-width:0px;">
+    </span>
+    <span class="ezmob-footer-close-wrap" id="ezmob-footer-close" style="display: none;">
+     <span class="ezmob-footer-close" onclick="__ez_close_anchor()" title="close">
+     </span>
+     <span class="ezoicwhat">
+      <img class="ezmob-anchor-img" src="https://go.ezodn.com/utilcave_com/ezoic.png" title="ezoic"/>
+     </span>
+    </span>
+   </center>
+  </div>
+  <span class="ezoic-outstream" id="ezoic-pub-outstream-placeholder">
+  </span>
+  <noscript>
+   <div style="display:none;">
+    <img alt="Quantcast" border="0" height="1" src="//pixel.quantserve.com/pixel/p-31iz6hfFutd16.gif?labels=Domain.mtgassist_com,DomainId.552926" width="1"/>
+   </div>
+  </noscript>
+ </body>
+</html>
